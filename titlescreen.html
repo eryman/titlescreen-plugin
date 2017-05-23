@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Status bar</title>
+  <style>
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      overflow-y: hidden;
+    }
+
+    #title_background {
+      position: absolute;
+      z-index: 15;
+      top: 0;
+      bottom: 0;
+      margin: 0;
+      padding: 0;
+      background-color: black;
+      width: 100%;
+      height: 100vh;
+    }
+
+    #title_foreground {
+      background-color: white;
+    }
+
+    #title_enter_text {
+      color: white;
+      text-align: center;
+    }
+
+    #title_enter_text:hover {
+      cursor: pointer;
+    }
+
+
+
+  </style>
+</head>
+<body>
+  <h1>words</h1>
+    <script src="js/jQuery.js"></script>
+    <script>
+
+
+      activateTitleScreen = function(){
+        $('body').append('<div id="title_background"></div>');
+        var $title_background = $('#title_background');
+        $title_background.append('<div id="title_foreground"></div>');
+        var $title_foreground = $('#title_foreground');
+        $title_background.append('<br><p id="title_enter_text">[ Enter ]</p>');
+
+        //EDIT FOLLOWING LINE TO CHANGE IMAGE
+        $title_foreground.css('background-image', 'url(image1.JPG)');
+        $title_foreground.css('background-size', 'cover');
+        if ($(window).width() > $(window).height()){  
+          $title_foreground.css('height', $(window).height() * 3/4);
+          $title_foreground.css('width', $title_foreground.height());
+        } else {
+          $title_foreground.css('width', $(window).width() * 3/4);
+          $title_foreground.css('height', $title_foreground.width());          
+        }
+        $title_foreground.css('margin-top', ($(window).height() - $title_foreground.height())/2);        
+        $title_foreground.css('margin-left', ($(window).width() - $title_foreground.width())/2);
+
+        $('#title_enter_text').click(function(){
+          $title_background.fadeOut(500);
+          $('body').css('overflow-y', 'auto');
+        });
+      }
+
+      activateTitleScreen();
+        
+
+    </script>
+  </body>
+</html>
